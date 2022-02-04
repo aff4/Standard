@@ -414,9 +414,9 @@ A compliant implementation MAY create an AFF4 container which stored both metada
 - Mirrored Containers (for redundancy or duplication of evidece at acquisition time)
 
 ### 7.1 Striped Containers
-Striped Containers store a single physical image across two or more ZIP volumes. A single aff4:ImageStream is created within each ZIP volume for storage of data blocks, and a single or multiple near-equivalent aff4:Map used to represent the Physical Image datastream, and it's mapping to blocks in the multiple ImageStreams. The point of commonality unifying the ZIP Containers of such is a commonly named DiskImage object.
+Striped Containers store a single physical image across two or more AFF4 ZIP volumes. A single aff4:ImageStream is created within each AFF4 ZIP volume for storage of data blocks, and a single or multiple** near-equivalent aff4:Map's used to represent the datastream of the physical image, and its mapping to blocks in the multiple ImageStreams. The point of commonality unifying the such AFF4 ZIP Containers is a commonly named DiskImage object.
 
-With reference to the following two example RDF fragments taken from a striped container with 2 stripes, Volume A only contains ImageStream DDDD, and volume B only contains ImageStream EEEE. On opening Volume A, an implemention querying for aff4:DiskImages would find that the volume contains a DiskImage named AAAA. By following the datastream property to the associated Map, and the aff4:dependentStream property, the implementation would be able to identify that the dependentStream named DDDD was missing. 
+With reference to the following two example RDF fragments taken from a striped container with 2 stripes, Volume A only contains ImageStream DDDD, and volume B only contains ImageStream EEEE. On opening Volume A, an implemention querying for aff4:DiskImages would find that the volume contains a DiskImage named AAAA. By following the datastream property to the associated Map, and the aff4:dependentStream property, the implementation would be able to identify both that the stream AAAA was present in that volume and that the dependent ImageStream named EEEE is missing. 
 
 --- AFF4 Zip Volume A ---
 ```
@@ -441,11 +441,11 @@ With reference to the following two example RDF fragments taken from a striped c
 <aff4://EEEE>
         a                          aff4:ImageStream ;
 ```
-The implementation may identify the location by doing opening other AFF4 files in the same storage location and searching within their RDF metadata for instances of the same aff4:DiskImage or the missing aff4:ImageStream.
+The implementation may identify the location of the missing stream by doing opening other AFF4 files in the same storage location and searching within their RDF metadata for instances of the same aff4:DiskImage or the missing aff4:ImageStream.
 
 This process may be accelerated by pre-indexing volumes, or by using a file naming scheme to infer commonality.
 
-A unique map-per AFF4 Zip Volume map be required for efficiency in highly concurrent implementations, due to subtle differences in each Map (e.g. mapPath).
+** A unique map per AFF4 Zip Volume map be required for efficiency in highly concurrent implementations, due to subtle differences in each Map (e.g. mapPath).
 
 ## 8. References
 
