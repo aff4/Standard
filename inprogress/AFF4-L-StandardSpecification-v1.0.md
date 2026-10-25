@@ -100,7 +100,7 @@ tool=pyaff4 0.9\n
 
 ### 4.1 Lexicon synonyms
 
-The RDF namespace to be used for newly introduced RDF lexicon items introduced in implementations of the AFF4-L Standard v1.0 is https://aff4.org/Schema/2022/# , shorthand prefixed as “aff4l”. 
+The RDF namespace to be used for newly introduced RDF lexicon items introduced in implementations of the AFF4-L Standard v1.0 is http://aff4.org/Schema/2022/# , shorthand prefixed as “aff4l”. 
 
 These supplement the lexicon introduced in the AFF4 Standard v1.0.
 
@@ -108,7 +108,7 @@ The naming convention for properties and classes is unchanged from AFF4 Standard
 
 Compliant implementations MUST use the correct namespace as defined in the relevant AFF4/AFF4-L standard when writing. When reading, compliant implementations MAY additionally honour either namespace prefix in support of backwards compatibility. 
 
-### 4.1 Base Classes
+### 4.2 Base Classes
 
 The following classes supplement those defined in AFF4 Standard v1.0. 
 
@@ -120,7 +120,7 @@ The following classes supplement those defined in AFF4 Standard v1.0.
 | FileExtendedAttribute  | MacOS ExtendedAttribute |
 | LogicalAcquisitionTask | Represents the logical acquisition |
 
-### 4.2 Base Properties
+### 4.3 Base Properties
 
 | Name                | Context                | Purpose                                                                                                            |
 |---------------------|------------------------|--------------------------------------------------------------------------------------------------------------------|
@@ -143,7 +143,7 @@ The following classes supplement those defined in AFF4 Standard v1.0.
 | name                | FileExtendedAttribute  | The name of an extended attribute                                                                                  |
 | value               | FileExtendedAttribute  | The base64 encoded data stream of an extended attribute                                                            |
 
-### 4.3 Additional datatypes
+### 4.4 Additional datatypes
 
 The following additional datatypes are supported for digest properties.
 
@@ -244,7 +244,7 @@ relying on the Metadata Integrity Hash for integrity.
         aff4:size    "11"^^xsd:long ;
         aff4:target  <aff4://2585b4c0-340c-45e7-ad9e-0f688da77ef8> ;
         aff4:name   "helloADS" ;
-        aff4:dataSteam  "IkhlbGxvIEFEUyI="^^xsd:base64Binary .
+        aff4l:dataStream  "IkhlbGxvIEFEUyI="^^xsd:base64Binary .
 ```
 
 ```
@@ -252,7 +252,7 @@ relying on the Metadata Integrity Hash for integrity.
         a aff4:FileImage , aff4:Image , aff4:ContiguousImage ;
         aff4:size    "11"^^xsd:long ;
         ...
-        aff4:dataSteam  "IkhlbGxvIEFEUyI="^^xsd:base64Binary .
+        aff4l:dataStream  "IkhlbGxvIEFEUyI="^^xsd:base64Binary .
 ```
 
 ### 6.3 Map Storage Streams
@@ -268,7 +268,7 @@ By using Map's, implementations may choose to store the datastreams of multiple 
         a                      aff4:Image , aff4:FileImage , aff4:Map , aff4:ContiguousImage ;
         aff4:dependentStream   <aff4://0947bfd0-1265-42d3-95b6-8d7bed108e9b> ;
         aff4:lastWritten       "2020-08-27T01:45:28Z"^^xsd:dateTime ;
-        aff4s:hash              "f384a16360a84dc83f3621d12d2d10cc859c7d242814c27d5e0dc343078b88b8abd1d4ddb983572436e32e4b18fbe263f6e6adc048e4f3ba930ec4d25a472ff9"^^aff4s:blockMapHashSHA512 ;
+        aff4:hash              "f384a16360a84dc83f3621d12d2d10cc859c7d242814c27d5e0dc343078b88b8abd1d4ddb983572436e32e4b18fbe263f6e6adc048e4f3ba930ec4d25a472ff9"^^aff4:blockMapHashSHA512 ;
         aff4:mapHash           "02c3558b67c5564b704dbf5df95b9e047553396b429cb9d2d82d5734a9c4e4440ee6deee01195096991a015d8b6569b13f575546fb60411bcdea2c3e3b9b2f43"^^aff4:SHA512 ;
         aff4:mapIdxHash        "6dbb15c6a9a4c5e9d893a7cfca636bf3080e6b1a5259744d26cb0f5aef3c094cda4caadd1853573a5d5b39113e7cd7e0208f571a80bd1f8caee9d68f78d99db9"^^aff4:SHA512 ;
         aff4:mapPointHash      "9580ca7260cbcf88d8b0ac8b47b8f6fe8a52b6c2af917b000b4f6ba6c23f9bd26cc91d15afcc35a70665bde22d88e9cd32f9a6414a0bf8a8d844d5c38b60b252"^^aff4:SHA512 ;
@@ -288,7 +288,7 @@ A FileImage may choose to represent its associated datastream indirectly via the
 <aff4://31aa452b-bddf-4257-a998-5bb75a80f9b1>
         a                      aff4:Map ;
         aff4:dependentStream   <aff4://0947bfd0-1265-42d3-95b6-8d7bed108e9b> ;
-        aff4s:hash              "f384a16360a84dc83f3621d12d2d10cc859c7d242814c27d5e0dc343078b88b8abd1d4ddb983572436e32e4b18fbe263f6e6adc048e4f3ba930ec4d25a472ff9"^^aff4s:blockMapHashSHA512 ;
+        aff4:hash              "f384a16360a84dc83f3621d12d2d10cc859c7d242814c27d5e0dc343078b88b8abd1d4ddb983572436e32e4b18fbe263f6e6adc048e4f3ba930ec4d25a472ff9"^^aff4:blockMapHashSHA512 ;
         aff4:mapHash           "02c3558b67c5564b704dbf5df95b9e047553396b429cb9d2d82d5734a9c4e4440ee6deee01195096991a015d8b6569b13f575546fb60411bcdea2c3e3b9b2f43"^^aff4:SHA512 ;
         aff4:mapIdxHash        "6dbb15c6a9a4c5e9d893a7cfca636bf3080e6b1a5259744d26cb0f5aef3c094cda4caadd1853573a5d5b39113e7cd7e0208f571a80bd1f8caee9d68f78d99db9"^^aff4:SHA512 ;
         aff4:mapPointHash      "9580ca7260cbcf88d8b0ac8b47b8f6fe8a52b6c2af917b000b4f6ba6c23f9bd26cc91d15afcc35a70665bde22d88e9cd32f9a6414a0bf8a8d844d5c38b60b252"^^aff4:SHA512 ;
@@ -305,7 +305,7 @@ Two examples follow:
 ```   
 <aff4://31aa452b-bddf-4257-a998-5bb75a80f9b1>
         a                      aff4:Map ;
-        aff4:hash              "f384a16360a84dc83f3621d12d2d10cc859c7d242814c27d5e0dc343078b88b8abd1d4ddb983572436e32e4b18fbe263f6e6adc048e4f3ba930ec4d25a472ff9"^^aff4s:blockMapHashSHA512 ;
+        aff4:hash              "f384a16360a84dc83f3621d12d2d10cc859c7d242814c27d5e0dc343078b88b8abd1d4ddb983572436e32e4b18fbe263f6e6adc048e4f3ba930ec4d25a472ff9"^^aff4:blockMapHashSHA512 ;
         ...
         aff4:size              "34473"^^xsd:long .
 ```
@@ -363,7 +363,7 @@ With reference to the example below, the aff4l:imports statement refers to the r
 Noting that the Volume's ARN is aff4://7cbb47d0-b04c-42bc-8c04-87b7782739ad, under the ARN to ZIP mapping rules, this would refer to a file named "information.turtle.2", which resides in the same AFF4 container. 
 We such referred to files "Secondary Information Stores".
 
-Implementations MUST treat the triples in the "information.turtle" and any triples stored in files referred to by the aff4:imports property as all belonging to the same RDF graph. 
+Implementations MUST treat the triples in the "information.turtle" and any triples stored in files referred to by the aff4l:imports property as all belonging to the same RDF graph. 
 
 ```
 @prefix :      <aff4://7cbb47d0-b04c-42bc-8c04-87b7782739ad> .
@@ -467,7 +467,7 @@ An example follows:
 ```
 Where an Accelerated Primary Information Store is employed (ie and “information.hdt” exists alongside an “information.turtle”), implementations may choose to sign the “information.hdt” following the aforementioned pattern.
 
-### 10.2 Hashing of Secondary Information Stores
+### 10.3 Hashing of Secondary Information Stores
 
 Where an implementation employs Secondary Information Stores, the hashes of those stores must be stored in the Primary Information Store by using the resource name of the Secondary Information Store, along with the aff4:hash property, per the following example:
 
